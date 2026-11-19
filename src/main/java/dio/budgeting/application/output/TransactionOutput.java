@@ -1,4 +1,4 @@
-package dio.budgeting.application;
+package dio.budgeting.application.output;
 
 import dio.budgeting.domain.Transaction;
 

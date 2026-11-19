@@ -1,6 +1,7 @@
 package dio.budgeting.application;
 
 import dio.budgeting.application.input.PersistTransactionInput;
+import dio.budgeting.application.output.TransactionOutput;
 import dio.budgeting.domain.Transaction;
 import dio.budgeting.domain.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ public class PersistTransactionUseCase {
         this.transactionRepository = transactionRepository;
     }
 
-    public Transaction execute(PersistTransactionInput input) {
-        var transaction = new Transaction(input.description(), input.amount(), input.category());
-        return transactionRepository.save(transaction);
+    public TransactionOutput execute(PersistTransactionInput input) {
+        var transaction = transactionRepository.save(new Transaction(input.description(), input.amount(), input.category()));
+        return TransactionOutput.from(transaction);
     }
 }
